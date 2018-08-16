@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hikvision.mapper.UserMapper">
+
+
+    <!-- 定义的resultMap，可以解决类的属性名和数据库列名不一致的问题-->
+    <resultMap id="BaseResultMap" type="com.hikvision.domain.UserDO">
+        <id column="u_id" jdbcType="BIGINT" property="id" />
+        <result column="user_id" jdbcType="VARCHAR" property="userId" />
+        <result column="user_name" jdbcType="VARCHAR" property="userName" />
+        <result column="nick_name" jdbcType="VARCHAR" property="nickName" />
+        <result column="password" jdbcType="VARCHAR" property="password" />
+        <result column="user_type" jdbcType="INTEGER" property="userType" />
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+        <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+        u_id, user_id, user_name, nick_name, password, user_type, create_time, modify_time
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+        select
+        <include refid="Base_Column_List" />
+        from user
+        where user_id = #{userId,jdbcType=VARCHAR}
+    </select>
+
+    <select id="selectByUserName" resultMap="BaseResultMap" parameterType="com.hikvision.domain.UserDO" >
+        select
+        <include refid="Base_Column_List" />
+        from user
+        where nick_name = #{nickName,jdbcType=VARCHAR} and user_name = #{userName,jdbcType=VARCHAR}
+    </select>
+
+    <select id="selectByUserAccount" resultMap="BaseResultMap" parameterType="java.lang.String" >
+        select
+        <include refid="Base_Column_List" />
+        from user
+        where user_name = #{userName,jdbcType=VARCHAR}
+    </select>
+
+    <select id="loginUser" resultMap="BaseResultMap" parameterType="com.hikvision.domain.UserDO" >
+        select
+        <include refid="Base_Column_List" />
+        from user
+        where user_name = #{userName,jdbcType=VARCHAR} and password=#{password,jdbcType=VARCHAR}
+    </select>
+
+    <select id="selectAllUser" resultMap="BaseResultMap">
+        select
+        *
+        from user
+        order by create_time
+    </select>
+
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+        delete from user
+        where user_id = #{userId,jdbcType=VARCHAR}
+    </delete>
+
+    <insert id="insert" parameterType="com.hikvision.domain.UserDO" >
+        insert into user (user_name, nick_name, password)
+        values (#{userName,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR},
+        #{password,jdbcType=VARCHAR})
+    </insert>
+
+    <update id="update" parameterType="com.hikvision.domain.UserDO">
+        update user
+        set password = #{password,jdbcType=VARCHAR}
+        where nick_name = #{nickName,jdbcType=VARCHAR} and user_name=#{userName,jdbcType=VARCHAR}
+    </update>
+
+    <select id="selectByPage" resultMap="BaseResultMap">
+        select
+        *
+        from user
+        order by create_time
+        limit #{offset},#{size}
+    </select>
+
+    <select id="selectAllCount" resultType="int">
+        select
+        count(*)
+        from user
+        order by create_time
+    </select>
+    <update id="editUser" parameterType="com.hikvision.domain.UserDO" >
+        update user
+        set password = #{password,jdbcType=VARCHAR}
+        where user_id = #{userId,jdbcType=BIGINT}
+    </update>
+</mapper>
+

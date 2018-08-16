@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="device-common" />
+        <module name="device-core" />
+        <module name="device-repository" />
+        <module name="device-service" />
+        <module name="device-utils" />
+        <module name="device-web" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="device-common" target="1.7" />
+      <module name="device-core" target="1.7" />
+      <module name="device-parent" target="1.7" />
+      <module name="device-repository" target="1.7" />
+      <module name="device-service" target="1.7" />
+      <module name="device-utils" target="1.7" />
+      <module name="device-web" target="1.7" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

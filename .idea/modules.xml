@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/device-common/device-common.iml" filepath="$PROJECT_DIR$/device-common/device-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/device-core/device-core.iml" filepath="$PROJECT_DIR$/device-core/device-core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/device-parent/device-parent.iml" filepath="$PROJECT_DIR$/device-parent/device-parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/device-repository/device-repository.iml" filepath="$PROJECT_DIR$/device-repository/device-repository.iml" />
+      <module fileurl="file://$PROJECT_DIR$/device-service/device-service.iml" filepath="$PROJECT_DIR$/device-service/device-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/device-utils/device-utils.iml" filepath="$PROJECT_DIR$/device-utils/device-utils.iml" />
+      <module fileurl="file://$PROJECT_DIR$/device-web/device-web.iml" filepath="$PROJECT_DIR$/device-web/device-web.iml" />
+    </modules>
+  </component>
+</project>

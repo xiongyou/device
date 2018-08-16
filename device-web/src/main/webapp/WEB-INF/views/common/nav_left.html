@@ -1,0 +1,215 @@
+<nav class="navbar-default navbar-static-side" role="navigation">
+    <div class="sidebar-collapse">
+        <ul class="nav metismenu" id="side-menu">
+            <li class="nav-header">
+                <h3 style="color:white;">设备管理系统</h3>
+            </li>
+
+            <li id="first" class='active'>
+                <a href="#">
+                    <i ></i>
+                    <span class="nav-label">库存管理</span>
+                    <span class="fa arrow"></span>
+                </a>
+                <ul class="nav nav-second-level">
+                    <li id="firstLeve1" class='active'>
+                        <a href="#">
+                            <i ></i>
+                            <span class="nav-label">库存</span>
+                            <span class="fa arrow"></span>
+                        </a>
+                        <ul class="nav nav-third-level">
+                            <li class='active'><a href="#springUrl('/allReport/originDataReportList')">原始数据复核</a></li>
+                            <li class='active'><a href="#springUrl('/product/list')">产品基本数据复核</a></li>
+                            <li class='active'><a href="#springUrl('/product/recheckPersonList')">复核人员数量统计</a></li>
+                        </ul>
+                    </li>
+
+                    <li id="firstLeve2">
+                        <a href="#">
+                            <i ></i>
+                            <span class="nav-label">基础数据管理</span>
+                            <span class="fa arrow"></span>
+                        </a>
+                        <ul class="nav nav-third-level">
+                            <li class='active'><a href="#springUrl('/categoryManager/manager')">农产品类别管理</a></li>
+                            <!-- <li class='active'><a href="#springUrl('/DemoTest/list')">DEMO演示</a></li>
+                            <li class='active'><a href="#springUrl('/category/list')">三级类别管理</a></li>
+                         <li class='active'><a href="#springUrl('/keyword/list')">关键字管理</a></li> -->
+                            <li class='active'><a href="#springUrl('/categoryLog/list')">类别管理日志</a></li>
+                            <li class='active'><a href="#springUrl('/categoryManager/newKeyWordlist')">新关键词类别关联管理</a></li>
+
+                            <li class='active'><a href="#springUrl('/threeClassification/threeKeyWordlist')">关键词管理</a></li>
+
+                        </ul>
+                    </li>
+
+                    <li id="firstLeve3">
+                        <a href="#">
+                            <i ></i>
+                            <span class="nav-label">采集任务管理</span>
+                            <span class="fa arrow"></span>
+                        </a>
+                        <ul class="nav nav-third-level">
+                            <li class='active'><a href="#springUrl('/project/list')">采集项目管理</a></li>
+                            <li class='active'><a>采集任务发布</a></li>
+                            <li class='active'><a href="#springUrl('/allProjectTask/defultProjectTaskInfo')">采集总监控</a></li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </li>
+
+            <li id="second" >
+                <a href="#">
+                    <i ></i>
+                    <span class="nav-label">农电商数据处理</span>
+                    <span class="fa arrow"></span>
+                </a>
+                <ul class="nav nav-second-level">
+                    <li >
+                        <a href="#">
+                            <i ></i>
+                            <span class="nav-label">数据预处理</span>
+                            <span class="fa arrow"></span>
+                        </a>
+                        <ul class="nav nav-third-level">
+                            <li class='active'><a >价格处理</a></li>
+                            <li class='active'><a >地址处理</a></li>
+                            <li class='active'><a >重量处理</a></li>
+                            <li id="isNotProduct" class='active'><a >负面商品处理</a></li>
+                        </ul>
+                    </li>
+
+                    <li >
+                        <a href="#">
+                            <i ></i>
+                            <span class="nav-label">数据导入</span>
+                            <span class="fa arrow"></span>
+                        </a>
+                        <ul class="nav nav-third-level">
+                            <li class='active'><a >店铺数据导入</a></li>
+                            <li class='active'><a >商品数据导入</a></li>
+                            <li class='active'><a >交易数据导入</a></li>
+                        </ul>
+                    </li>
+
+
+                </ul>
+            </li>
+
+            <li id="third">
+                <a href="#">
+                    <i ></i>
+                    <span class="nav-label">农电商数据报表</span>
+                    <span class="fa arrow"></span>
+                </a>
+                <ul class="nav nav-second-level">
+                    <li id="thirdLevel6">
+                        <a href="#">
+                            <i ></i>
+                            <span class="nav-label">总表</span>
+                            <span class="fa arrow"></span>
+                        </a>
+                        <ul class="nav nav-third-level">
+                            <li class='active'><a href="#springUrl('/allReport/ControlStatisticsTotalList')">监测统计总表</a></li>
+                        </ul>
+                    </li>
+                    <li id="thirdLevel1">
+                        <a href="#">
+                            <i ></i>
+                            <span class="nav-label">平台数据</span>
+                            <span class="fa arrow"></span>
+                        </a>
+                        <ul class="nav nav-third-level">
+                            <li class='active'><a>采集平台清单</a></li>
+                            <li class='active'><a href="#springUrl('/allReport/AllProductNumList')">所有商品数量</a></li>
+                            <li class='active'><a href="#springUrl('/allReport/CQFarmProductNumList')">重庆农产品数量</a></li>
+                            <li class='active'><a href="#springUrl('/allReport/PlatformStoreNumList')">分平台店铺数量</a></li>
+                        </ul>
+                    </li>
+
+
+                    <li id="thirdLevel2">
+                        <a href="#">
+                            <i ></i>
+                            <span class="nav-label">类别数据</span>
+                            <span class="fa arrow"></span>
+                        </a>
+                        <ul class="nav nav-third-level">
+                            <li class='active'><a href="#springUrl('/allReport/ClassifySystemList')">分类体系</a></li>
+                            <li class='active'><a href="#springUrl('/allReport/OneClassifyList')">按一级类别统计</a></li>
+                            <li class='active'><a href="#springUrl('/allReport/FreshClassifyList')">生鲜分类统计</a></li>
+                            <li class='active'><a href="#springUrl('/allReport/NoFreshClassifyList')">非生鲜分类统计</a></li>
+                            <li class='active'><a href="#springUrl('/allReport/CQFarmNetMarketClassifyList')">重庆农产品上网销售品类数清单</a></li>
+                            <li class='active'><a href="#springUrl('/allReport/AliClassifyList')">阿里平台月度销售情况</a></li>
+                        </ul>
+                    </li>
+
+                    <li id="thirdLevel3">
+                        <a href="#">
+                            <i ></i>
+                            <span class="nav-label">地区数据</span>
+                            <span class="fa arrow"></span>
+                        </a>
+                        <ul class="nav nav-third-level">
+                            <li class='active'><a href="#springUrl('/allReport/CQFarmProductEveryMarketList')">重庆农产品各省市销售情况</a></li>
+                            <li class='active'><a href="#springUrl('/allReport/CQFarmProductEveryStoreList')">重庆农产品分省店铺数量</a></li>
+                            <li class='active'><a href="#springUrl('/allReport/EveryCityFarmProductList')">各区县农产品统计</a></li>
+                        </ul>
+                    </li>
+
+                    <li id="thirdLevel4">
+                        <a href="#">
+                            <i ></i>
+                            <span class="nav-label">店铺数据</span>
+                            <span class="fa arrow"></span>
+                        </a>
+                        <ul class="nav nav-third-level">
+                            <li class='active'><a href="#springUrl('/allReport/MarketCQFarmProductStoreList')">售卖重庆农产品的店铺</a></li>
+                            <li class='active'><a href="#springUrl('/allReport/CQLocalStoreList')">重庆本土网店清单</a></li>
+                            <li class='active'><a href="#springUrl('/allReport/CQFarmProductStoreNumList')">重庆网店数量</a></li>
+                            <li class='active'><a href="#springUrl('/allReport/CQEveryCityStoreList')">重庆各区县店铺数量</a></li>
+                        </ul>
+                    </li>
+
+                    <li id="thirdLevel5">
+                        <a href="#">
+                            <i ></i>
+                            <span class="nav-label">单品统计</span>
+                            <span class="fa arrow"></span>
+                        </a>
+                        <ul class="nav nav-third-level">
+                            <li class='active'><a href="#springUrl('/allReport/TmMonthProductList')">天猫月度单品20强</a></li>
+                            <li class='active'><a href="#springUrl('/allReport/TbMonthProductList')">淘宝月度单品20强</a></li>
+                        </ul>
+                    </li>
+                    <li class='active'><a href="#springUrl('/allReport/EveryDayList')">每日采集报表</a></li>
+
+                </ul>
+            </li>
+            <!-- <li id="fourth">
+                <a href="#springUrl('/everyDayProductTest/insert')">
+                	导入每日采集的数据
+               	</a>
+            </li> -->
+        </ul>
+    </div>
+</nav>
+#override("js")
+<script src="#springUrl('/static/plugins/layer-v2.2/layer/layer.js')"></script>
+<script>
+    $("#isNotProduct").click(
+        function(){
+            $.post("#springUrl('/product/isNotUpdateProduct')",function(result){
+                var d = JSON.parse(result);
+                var error=d.data;
+                layer.alert(error, {
+                    skin: 'layui-layer-molv',
+                    closeBtn: 0
+                });
+            })
+        }
+    )
+</script>
+#end
