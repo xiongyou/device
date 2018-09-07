@@ -37,6 +37,7 @@
         <property name="resourceLoaderPath" value="/WEB-INF/views/" />
         <property name="configLocation" value="classpath:velocity.properties" />
     </bean>
+    <!-- spring security配置 -->
     <bean id="viewResolver"
           class="org.springframework.web.servlet.view.velocity.VelocityLayoutViewResolver">
         <property name="suffix" value=".html" />
@@ -45,6 +46,8 @@
         <property name="layoutUrl" value="layout/default.vm"/>
         <property name="dateToolAttribute" value="date" /><!--日期函数名称-->
         <property name="numberToolAttribute" value="number" /><!--数字函数名称-->
+        <property name="exposeSpringMacroHelpers" value="true"/>
+
     </bean>
 
     <!-- 配置文件上传，如果没有使用文件上传可以不用配置，当然如果不配，那么配置文件中也不必引入上传组件包 -->
@@ -74,6 +77,9 @@
             </value>
         </property>
     </bean>
+
+
     <mvc:annotation-driven/>
     <mvc:default-servlet-handler/>
+
 </beans>

@@ -83,7 +83,7 @@ public class AccountController extends SuperController {
         UserDO user2=new UserDO();
         user2.setNickName(nickName);
         user2.setUserName(userName);
-        UserDO user1=userService.selectByUserName(user2);
+        UserDO user1=userService.selectByUserName(userName);
         if(null==user1){
             errorRegMsg="用户名称或用户账号不存在";
             strUrl="/editPassWord";

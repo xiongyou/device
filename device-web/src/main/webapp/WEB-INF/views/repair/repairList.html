@@ -1,0 +1,71 @@
+#override("title")
+SpringMVC - 设备报修
+#end
+#override("css")
+<link href="#springUrl('/static/css/plugins/bootstrap-table/bootstrap-table.min.css')" rel="stylesheet">
+#end
+#override("breadcrumb")
+<li><a>设备报修</a></li><li class="active"><strong>报修记录</strong></li>
+#end
+#override("content")
+<div class="row">
+    <div class="ibox-content text-right form-inline" style="background: #F3F3F4;">
+        <div class="input-group">
+            <input type="text" name="word" id="word"  class="form-control">
+            <span class="input-group-btn">
+				<button type="button" onClick="Search()"  class="btn btn-info">搜索</button>
+			</span>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        <table id="dataTable"></table>
+    </div>
+</div>
+#end
+#override("js")
+<script src="#springUrl('/static/js/plugins/bootstrap-table/bootstrap-table.min.js')"></script>
+<script src="#springUrl('/static/js/plugins/bootstrap-table/bootstrap-table-mobile.min.js')"></script>
+<script src="#springUrl('/static/js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js')"></script>
+<script src="#springUrl('/static/plugins/layer-v2.2/layer/layer.js')"></script>
+<script src="#springUrl('/static/js/base_list.js')"></script>
+<script src="#springUrl('/static/js/common.js')"></script>
+<script type="text/javascript">
+    var dataUrl = "#springUrl('/repair/getRepairList.html')";
+    var dataColumns = [{
+        field: 'repairId',
+        title: '序号'
+    }, {
+        field: 'deviceRecId',
+        title: '设备编号'
+    }, {
+        field: 'callId',
+        title: '报修人'
+    }, {
+        field: 'repairman',
+        title: '维修人员'
+    },  {
+        field: 'repairTime',
+        title: '报修时间',
+        formatter: function (value, row, index) {
+            return formatDate(row.repairTime);
+        }
+    }, {
+        field: 'finishTime',
+        title: '维修时间'        ,
+        formatter: function (value, row, index) {
+            return formatDate(row.finishTime);
+        }
+    }
+    ];
+    function dataQueryParams(params) {
+        return {
+            _size: params.limit,  //页面大小
+            _index: params.offset, //页码
+        };
+    }
+
+</script>
+#end
+#extends("/common/framework.html")
