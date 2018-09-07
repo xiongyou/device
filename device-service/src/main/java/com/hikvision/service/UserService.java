@@ -27,7 +27,7 @@ public interface UserService {
     /**
      * 根据用户昵称和用户名查找账号
      */
-    UserDO selectByUserName(UserDO user);
+    UserDO selectByUserName(String user);
 
     /**
      * 删除操作
@@ -35,7 +35,7 @@ public interface UserService {
      * @param user
      * @return
      */
-    int delete(String userId);
+    int delete(String userName);
 
     /**
      * 更新操作
@@ -51,7 +51,7 @@ public interface UserService {
      * @param userName
      * @return
      */
-    User findByName(String userName);
+    UserDO findByName(String userName);
 
     /**
      * 按照用户名查找

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hikvision.mapper.DeviceReceiveMapper">
+
+
+    <!-- 定义的resultMap，可以解决类的属性名和数据库列名不一致的问题-->
+    <resultMap id="BaseResultMap" type="com.hikvision.domain.DeviceReceiveDO">
+        <id column="d_rec_id" jdbcType="BIGINT" property="deviceRecId" />
+        <result column="d_id" jdbcType="INTEGER" property="deviceId" />
+        <result column="u_id" jdbcType="BIGINT" property="userId" />
+        <result column="rec_device_number" jdbcType="VARCHAR" property="receiveDeviceNumber" />
+        <result column="status" jdbcType="INTEGER" property="status" />
+        <result column="rec_time" jdbcType="TIMESTAMP" property="receiveTime" />
+        <result column="scrap_time" jdbcType="TIMESTAMP" property="scrapTime" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+       d_rec_id,d_id,u_id,rec_device_number,rec_time,status,scrap_time
+    </sql>
+
+    <sql id="Insert_Coumnt_List">
+        d_id,u_id,rec_device_number,rec_time,status
+    </sql>
+
+    <insert id="insert" parameterType="com.hikvision.domain.DeviceReceiveDO" >
+        insert into device_receive (<include refid="Insert_Coumnt_List" />)
+        values (#{deviceId}, #{userId},#{receiveDeviceNumber},  #{receiveTime}, #{status})
+    </insert>
+
+    <select id="selectByUserId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+        select
+        <include refid="Base_Column_List" />
+        from device_receive
+        where u_id = #{userId,jdbcType=BIGINT}
+    </select>
+
+    <select id="selectByDeviceId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+        select
+        <include refid="Base_Column_List" />
+        from device_receive
+        where d_id = #{deviceId,jdbcType=VARCHAR}
+    </select>
+
+    <select id="selectByReceiveDeviceNumber" resultMap="BaseResultMap" parameterType="java.lang.String" >
+        select
+        <include refid="Base_Column_List" />
+        from device_receive
+        where rec_device_number = #{receiveDeviceNumber,jdbcType=VARCHAR}
+    </select>
+
+    <update id="update" parameterType="com.hikvision.domain.DeviceReceiveDO">
+        update device_receive
+        set status = #{status,jdbcType=INTEGER}, scrap_time = #{scrapTime,jdbcType=TIMESTAMP}
+        where d_rec_id = #{deviceRecId,jdbcType=VARCHAR}
+    </update>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+        select
+        <include refid="Base_Column_List" />
+        from device_receive
+        where d_rec_id = #{deviceRecId,jdbcType=INTEGER}
+    </select>
+
+    <update id="changeStatus" >
+        update device_receive
+        set status =  #{status,jdbcType=INTEGER}
+        where d_rec_id = #{deviceRecId,jdbcType=VARCHAR}
+    </update>
+
+    <select id="selectByPage" resultMap="BaseResultMap" >
+        select
+        <include refid="Base_Column_List" />
+        from device_receive
+        where u_id = #{userId,jdbcType=BIGINT}
+        limit #{offset},#{size}
+    </select>
+
+    <select id="selectCount" resultType="int" >
+        select
+        count(*)
+        from device_receive
+        where u_id = #{userId,jdbcType=INTEGER}
+
+    </select>
+
+</mapper>
+

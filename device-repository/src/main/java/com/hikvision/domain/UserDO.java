@@ -2,6 +2,7 @@ package com.hikvision.domain;
 
 import org.springframework.stereotype.Component;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 
 /**
@@ -37,17 +38,12 @@ public class UserDO {
     /**
      * @return the id
      */
-    public long getId() {
+    public long getid() {
 
         return id;
     }
 
-    /**
-     * @param id
-     *            the id to set
-     */
     public void setId(long id) {
-
         this.id = id;
     }
 
@@ -160,4 +156,7 @@ public class UserDO {
 
         this.modifyTime = modifyTime;
     }
+
+
+
 }

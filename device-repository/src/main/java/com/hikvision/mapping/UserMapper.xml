@@ -21,14 +21,14 @@
         select
         <include refid="Base_Column_List" />
         from user
-        where user_id = #{userId,jdbcType=VARCHAR}
+        where user_name = #{userName,jdbcType=VARCHAR}
     </select>
 
-    <select id="selectByUserName" resultMap="BaseResultMap" parameterType="com.hikvision.domain.UserDO" >
+    <select id="selectByUserName" resultMap="BaseResultMap" parameterType="java.lang.String" >
         select
         <include refid="Base_Column_List" />
         from user
-        where nick_name = #{nickName,jdbcType=VARCHAR} and user_name = #{userName,jdbcType=VARCHAR}
+        where nick_name = #{nickName,jdbcType=VARCHAR} or user_name = #{userName,jdbcType=VARCHAR}
     </select>
 
     <select id="selectByUserAccount" resultMap="BaseResultMap" parameterType="java.lang.String" >
@@ -47,7 +47,7 @@
 
     <select id="selectAllUser" resultMap="BaseResultMap">
         select
-        *
+        <include refid="Base_Column_List" />
         from user
         order by create_time
     </select>
@@ -59,9 +59,9 @@
     </delete>
 
     <insert id="insert" parameterType="com.hikvision.domain.UserDO" >
-        insert into user (user_name, nick_name, password)
+        insert into user (user_name, nick_name, password, user_type, create_time, modify_time)
         values (#{userName,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR},
-        #{password,jdbcType=VARCHAR})
+        #{password,jdbcType=VARCHAR}, #{userType,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP})
     </insert>
 
     <update id="update" parameterType="com.hikvision.domain.UserDO">
@@ -72,7 +72,7 @@
 
     <select id="selectByPage" resultMap="BaseResultMap">
         select
-        *
+        <include refid="Base_Column_List" />
         from user
         order by create_time
         limit #{offset},#{size}
@@ -82,7 +82,6 @@
         select
         count(*)
         from user
-        order by create_time
     </select>
     <update id="editUser" parameterType="com.hikvision.domain.UserDO" >
         update user

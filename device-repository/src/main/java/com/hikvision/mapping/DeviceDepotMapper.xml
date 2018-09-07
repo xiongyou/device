@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hikvision.mapper.DeviceDepotMapper">
+
+
+    <!-- 定义的resultMap，可以解决类的属性名和数据库列名不一致的问题-->
+    <resultMap id="BaseResultMap" type="com.hikvision.domain.DeviceDepotDO">
+        <id column="d_id" jdbcType="INTEGER" property="dId" />
+        <result column="u_id" jdbcType="BIGINT" property="uId" />
+        <result column="device_id" jdbcType="VARCHAR" property="deviceId" />
+        <result column="device_name" jdbcType="VARCHAR" property="deviceName" />
+        <result column="device_type" jdbcType="VARCHAR" property="deviceType" />
+        <result column="configuration" jdbcType="VARCHAR" property="configuration" />
+        <result column="device_status" jdbcType="INTEGER" property="deviceStatus" />
+        <result column="amount" jdbcType="INTEGER" property="amount" />
+        <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+        <result column="edit_time" jdbcType="TIMESTAMP" property="editTime" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+        d_id, u_id, device_id, device_name, device_type, configuration, device_status, amount, add_time, edit_time
+    </sql>
+
+    <sql id="Insert_Coumnt_List">
+        u_id, device_id, device_name, device_type, configuration, device_status, amount, add_time, edit_time
+    </sql>
+
+    <insert id="insert" parameterType="com.hikvision.domain.DeviceDepotDO" >
+        insert into device_depot (<include refid="Insert_Coumnt_List" />)
+        values (#{uId}, #{deviceId},#{deviceName}, #{deviceType}, #{configuration}, #{deviceStatus}, #{amount}, #{addTime}, #{addTime})
+    </insert>
+
+
+    <delete id="deleteByPrimaryKey"   parameterType="java.lang.Integer" >
+        delete from device_depot
+        where d_id = #{dId,jdbcType=INTEGER}
+    </delete>
+
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select
+        <include refid="Base_Column_List" />
+        from device_depot
+        where d_id = #{dId,jdbcType=INTEGER}
+    </select>
+
+    <select id="selectByDeviceId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+        select
+        <include refid="Base_Column_List" />
+        from device_depot
+        where device_id = #{deviceId,jdbcType=VARCHAR}
+    </select>
+
+    <select id="selectByDeviceName" resultMap="BaseResultMap" parameterType="com.hikvision.domain.DeviceDepotDO" >
+        select
+        <include refid="Base_Column_List" />
+        from device_depot
+        where device_name = #{deviceName,jdbcType=VARCHAR}
+    </select>
+
+    <update id="update" parameterType="com.hikvision.domain.DeviceDepotDO">
+        update device_depot
+        set device_name = #{deviceName,jdbcType=VARCHAR},device_type = #{deviceType,jdbcType=VARCHAR},amount = #{amount,jdbcType=INTEGER}, edit_time = #{editTime,jdbcType=TIMESTAMP}
+        where device_id = #{deviceId,jdbcType=VARCHAR}
+    </update>
+
+    <select id="selectAllDevice" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from device_depot
+    </select>
+
+
+    <select id="selectByPage" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from device_depot
+        limit #{offset},#{size}
+    </select>
+
+
+
+    <select id="selectCount" resultType="int">
+        select
+        count(*)
+        from device_depot
+    </select>
+
+    <select id="selectByPageField" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from device_depot
+        WHERE device_id LIKE #{field} or device_name LIKE #{field} or device_type LIKE #{field} OR configuration LIKE #{field}
+        limit #{offset},#{size}
+    </select>
+
+    <select id="selectCountField" resultType="int">
+        select
+       count(*)
+        from device_depot
+        WHERE device_id LIKE #{field} or device_name LIKE #{field} or device_type LIKE #{field} OR configuration LIKE #{field}
+    </select>
+
+</mapper>
+

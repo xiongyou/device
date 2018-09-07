@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hikvision.mapper.RepairMapper">
+
+
+    <!-- 定义的resultMap，可以解决类的属性名和数据库列名不一致的问题-->
+    <resultMap id="BaseResultMap" type="com.hikvision.domain.RepairDO">
+        <id column="repair_id" jdbcType="BIGINT" property="repairId" />
+        <result column="d_rec_id" jdbcType="BIGINT" property="deviceRecId" />
+        <result column="u_id" jdbcType="BIGINT" property="callId" />
+        <result column="repairman" jdbcType="BIGINT" property="repairman" />
+        <result column="repair_time" jdbcType="TIMESTAMP" property="repairTime" />
+        <result column="finish_time" jdbcType="TIMESTAMP" property="finishTime" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+       repair_id,d_rec_id,u_id,repairman,repair_time,finish_time
+    </sql>
+
+    <sql id="Insert_Coumnt_List">
+        d_rec_id, u_id,repair_time
+    </sql>
+
+    <insert id="insert" parameterType="com.hikvision.domain.RepairDO" >
+        insert into repair (<include refid="Insert_Coumnt_List" />)
+        values (#{deviceRecId}, #{callId}, #{repairTime})
+    </insert>
+
+    <update id="update" parameterType="com.hikvision.domain.RepairDO">
+        update repair
+        set repairman = #{repairman,jdbcType=BIGINT}, finish_time = #{finishTime,jdbcType=TIMESTAMP}
+        where repair_id = #{repairId,jdbcType=BIGINT}
+    </update>
+
+
+    <select id="selectByRepairman" resultMap="BaseResultMap" >
+        select
+        <include refid="Base_Column_List" />
+        from repair
+        where repairman = #{repairman,jdbcType=BIGINT}
+        limit #{offset},#{size}
+    </select>
+
+    <select id="selectCountByRepairman" resultType="int" >
+        select
+        count(*)
+        from repair
+        where repairman = #{repairman,jdbcType=BIGINT}
+    </select>
+
+    <select id="selectByCallPerson" resultMap="BaseResultMap" >
+        select
+        <include refid="Base_Column_List" />
+        from repair
+        where u_id = #{callPerson,jdbcType=BIGINT}
+        limit #{offset},#{size}
+    </select>
+
+    <select id="selectCountByCallPerson" resultType="int" >
+        select
+        count(*)
+        from repair
+        where u_id = #{callPerson,jdbcType=BIGINT}
+    </select>
+
+    <select id="selectUnrepair" resultMap="BaseResultMap" >
+        select
+        <include refid="Base_Column_List" />
+        from repair
+        where finish_time is null
+        limit #{offset},#{size}
+    </select>
+
+    <select id="selectCountUnrepair" resultType="int">
+        select
+        count(*)
+        from repair
+        where finish_time is null
+    </select>
+</mapper>
+

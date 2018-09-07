@@ -24,6 +24,7 @@ public class UserServiceImpl implements UserService {
     /**
      * @see UserService#save (com.hikvision.service.vo.User)
      */
+    @Override
     public void insert(UserDO user) {
 
         userMapper.insert(user);
@@ -32,14 +33,16 @@ public class UserServiceImpl implements UserService {
     /**
      * @see UserService#delete(String)
      */
-    public int delete(String userId) {
+    @Override
+    public int delete(String userName) {
 
-        return userMapper.deleteByPrimaryKey(userId);
+        return userMapper.deleteByPrimaryKey(userName);
     }
 
     /**
      * @see UserService#update (com.hikvision.service.vo.User)
      */
+    @Override
     public void update(UserDO user) {
 
         userMapper.update(user);
@@ -48,7 +51,8 @@ public class UserServiceImpl implements UserService {
     /**
      * @see UserService#findByName(String)
      */
-    public UserDO selectByUserName(UserDO user) {
+    @Override
+    public UserDO selectByUserName(String user) {
 
         return userMapper.selectByUserName(user);
     }
@@ -56,6 +60,7 @@ public class UserServiceImpl implements UserService {
     /**
      * @see UserService#findAll()
      */
+    @Override
     public List<User> findAll() {
 
         List<UserDO> doList = userMapper.selectAllUser();
@@ -66,6 +71,7 @@ public class UserServiceImpl implements UserService {
     /**
      * @see UserService#findByID(String)
      */
+    @Override
     public User findByID(String userID) {
 
         UserDO userDO = userMapper.selectByPrimaryKey(userID);
@@ -75,6 +81,7 @@ public class UserServiceImpl implements UserService {
     /**
      * @see UserService#findByPage(Page)
      */
+    @Override
     public Page<User> findByPage(Page<User> page) {
 
         List<UserDO> keyWords = userMapper.selectByPage(page.getLimit() ,
@@ -85,9 +92,11 @@ public class UserServiceImpl implements UserService {
         return page;
     }
 
-    public User findByName(String userName) {
+
+    @Override
+    public UserDO findByName(String userName) {
         // TODO Auto-generated method stub
-        return null;
+        return userMapper.selectByUserName(userName);
     }
 
     public UserDO loginUser(UserDO user) {

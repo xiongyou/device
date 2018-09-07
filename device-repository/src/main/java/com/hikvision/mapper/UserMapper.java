@@ -16,7 +16,7 @@ public interface UserMapper {
 
     UserDO selectByPrimaryKey(@Param("userId") String userId);
 
-    UserDO selectByUserName(UserDO user);
+    UserDO selectByUserName(String userName);
 
     void update(UserDO user);
 
